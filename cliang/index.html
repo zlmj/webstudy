@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>亮亮哥哥的程序</title>
+    <link href="css/abc.css" rel="stylesheet">
+    <script src="js/jquery-3.4.1.min.js" ></script>
+    <script src="js/abc.js" ></script>
+
+</head>
+<body>
+  <div class="main">
+    <div class="content">
+      <div class="left">
+        <div class="top">
+          <input type="text" class="insearch" placeholder="查询" />
+          <a href="javascript:;" class="search"></a>
+          <a href="javascript:void(0);" onclick="ReaderPersonList()">刷新</a>
+      </div>
+      <ul class="people" id="peoples">
+          <li class="person" data-chat="person1" style="background-color: cornsilk;" >
+              <img src="image/user1.jpg" alt="" />
+              <span class="name">这是一个二货</span>
+              <span class="time">2:09 PM</span>
+              <span class="preview">怎么说呢这个是墨子</span>
+          </li>
+      </ul>
+      </div>
+      <div class="right">
+        <div class="top">
+          <span class="titlename">中联聊天软件</span>
+        </div>
+        <div class="chat" id="contentvalue">
+            <div class="conversation-start">
+                <span>Today, 6:48 AM</span>
+            </div>
+            <div class="msg you">
+                DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+            </div>
+            <div class="msg me">
+                Hello, it's me.     I was wondering...
+            </div>
+            <div class="conversation-start">
+                <span>Today, 6:48 AM</span>
+            </div>
+            <div class="msg you">
+                DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+            </div>
+            <div class="msg me">
+                Hello, it's me.     I was wondering...
+            </div>
+        </div>
+        <div class="write">
+            <a href="javascript:;" class="write-link attach"></a>
+            <input type="text" class="writecontent" id="msgvalue"/>
+            <a href="" class="write-link smiley"></a>
+            <a href="javascript:void(0);" class="write-link send" onclick="send()" id="sendbutton"></a>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
