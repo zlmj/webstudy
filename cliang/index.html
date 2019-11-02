@@ -1,62 +1,102 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>亮亮哥哥的程序</title>
-    <link href="css/abc.css" rel="stylesheet">
-    <script src="js/jquery-3.4.1.min.js" ></script>
-    <script src="js/abc.js" ></script>
+    <head>
+        <title>hahah</title>
+        <link rel="stylesheet" href="css/soho.min.css">
 
-</head>
+        <script src="js/abc.js"></script>
+        <script src="bootstrap337/js/bootstrap.min.js"></script>
+    </head>
 <body>
-  <div class="main">
+<div class="layout">
     <div class="content">
-      <div class="left">
-        <div class="top">
-          <input type="text" class="insearch" placeholder="查询" />
-          <a href="javascript:;" class="search"></a>
-          <a href="javascript:void(0);" onclick="ReaderPersonList()">刷新</a>
-      </div>
-      <ul class="people" id="peoples">
-          <li class="person" data-chat="person1" style="background-color: cornsilk;" >
-              <img src="image/user1.jpg" alt="" />
-              <span class="name">这是一个二货</span>
-              <span class="time">2:09 PM</span>
-              <span class="preview">怎么说呢这个是墨子</span>
-          </li>
-      </ul>
-      </div>
-      <div class="right">
-        <div class="top">
-          <span class="titlename">中联聊天软件</span>
+        <div class="sidebar-group">
+            <div id="chats" class="sidebar active">
+                <header>
+                    <span>Chats</span>
+                </header>
+                <form action="">
+                    <input type="text" class="form-control" placeholder="Search chat">
+                </form>
+                <div class="sidebar-body" tabindex="3" style="overflow: hidden; outline: none;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <figure class="avatar avatar-state-success">
+                                <img src="image/man_avatar1.jpg" class="rounded-circle">
+                            </figure>
+                            <div class="users-list-body">
+                                <h5>Patsy Paulton</h5>
+                                <p>Traditional heading elscas sdscsd sdcsdsc</p>
+                                <div class="users-list-action">
+                                    <div class="new-message-count">2</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item open-chat">
+                            <div>
+                                <figure class="avatar">
+                                    <img src="image/man_avatar3.jpg" class="rounded-circle">
+                                </figure>
+                            </div>
+                            <div class="users-list-body">
+                                <h5>Karl Hubane</h5>
+                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                                <div class="users-list-action action-toggle">
+                                    <div class="dropdown">
+                                        <a data-toggle="dropdown" href="">
+                                        <i class="ti-more"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="chat" id="contentvalue">
-            <div class="conversation-start">
-                <span>Today, 6:48 AM</span>
-            </div>
-            <div class="msg you">
-                DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
-            </div>
-            <div class="msg me">
-                Hello, it's me.     I was wondering...
-            </div>
-            <div class="conversation-start">
-                <span>Today, 6:48 AM</span>
-            </div>
-            <div class="msg you">
-                DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
-            </div>
-            <div class="msg me">
-                Hello, it's me.     I was wondering...
+        <div class="chat">
+            <div class="chat-header">
+                <div class="chat-header-user">
+                    <figure class="avatar avatar-lg">
+                        <img src="image/man_avatar3.jpg" class="rounded-circle">
+                    </figure>
+                <div>
+                    <h5>Karl Hubane</h5>
+                    <small class="text-muted">
+                        <i>Online</i>
+                    </small>
+                </div>
             </div>
         </div>
-        <div class="write">
-            <a href="javascript:;" class="write-link attach"></a>
-            <input type="text" class="writecontent" id="msgvalue"/>
-            <a href="" class="write-link smiley"></a>
-            <a href="javascript:void(0);" class="write-link send" onclick="send()" id="sendbutton"></a>
-      
+        <div class="chat-body" tabindex="2" style="overflow: hidden; outline: none;"> 
+            <div class="messages">
+                <div class="message-item outgoing-message">
+                    <div class="message-content">Hey, Maher! I'm waiting for you to send me the files.</div>
+                    <div class="message-action">Am 09:34</div>
+                </div>
+                <div class="message-item">
+                    <div class="message-content">I'm sorry :( I'll send you as soon as possible.</div>
+                    <div class="message-action">Pm 14:20</div>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="chat-footer">
+            <form action="#">
+                <input type="text" class="form-control" placeholder="Recipient&#39;s username" aria-label="Recipient&#39;s username" aria-describedby="button-addon2">
+                <div class="form-buttons">
+                    <button class="btn btn-light btn-floating" type="button">
+                        <i class="fa fa-paperclip"></i>
+                    </button>
+                    <button class="btn btn-light btn-floating" type="button">
+                        <i class="fa fa-microphone"></i>
+                    </button>
+                    <button class="btn btn-primary btn-floating" type="submit">
+                        <i class="fa fa-send"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
+</div>
 </body>
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>亮亮哥哥的测试</title>
+	<link rel="stylesheet" href="bootstrap337/css/bootstrap.min.css">
+	<script src="js/jquery-3.4.1.min.js"></script>
+    <script src="bootstrap337/js/bootstrap.min.js"></script>
+    <link href="css/abc2.css" rel="stylesheet">
+    <script src="js/abc.js" ></script>
+</head>
+<body> 
+    <div class="container"><!--container-fiuled-->
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">聊天工具</h3>
+            </div>
+            <div class="panel-body" style="background-color: rgba(233, 230, 230, 0.658);">
+                    <div class="row" >
+                        <div class="col-sm-3" style="height:800px;background-color: #fffffed2;">
+                                <div>
+                                    <input type="text" class="form-control" placeholder="查询" />
+                                    <a href="javascript:void(0);" onclick="ReaderPersonList()">刷新</a>
+                                </div>
+                                <ul class="list-group" id="peoples">
+                                    <li class="list-group-item" data-chat="person1">
+                                        <img src="image/user1.jpg" class="img-circle" style="width: 64px;height: 64px;">
+                                        <div class="users-list-body">
+                                                <h5>章三</h5>
+                                                <span class="preview">怎么说呢这个是墨子</span>
+                                                <div class="users-list-action">
+                                                    <div class="new-message-count">2</div>
+                                                </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                        </div>
+                        <div class="col-sm-9" style="background-color: #f6f8de;height: 800px;">
+                            <div class="chat" id="contentvalue">
+                                <div>
+                                    <span>Today, 6:48 AM</span>
+                                </div>
+                                <div class="you">
+                                    DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+                                </div>
+                                <div class="me">
+                                    Hello, it's me.     I was wondering...
+                                </div>
+                                <div class="conversation-start">
+                                    <span>Today, 6:48 AM</span>
+                                </div>
+                                <div class="msg you">
+                                    DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+                                </div>
+                                <div class="msg me">
+                                    Hello, it's me.     I was wondering...
+                                </div>
+                            </div>
+                            <div class="write">
+                                <input type="text" class="writecontent" id="msgvalue"/>
+                                <button type="button" class="btn btn-default" style="position: absolute;top: 5px;">
+                                        <span class="glyphicon glyphicon-send"></span> 
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

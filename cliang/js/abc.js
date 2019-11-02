@@ -30,7 +30,7 @@ function ReaderPersonList()
     var i=0;
     data.forEach(element => {
         var msg="<li class='person' data-chat='person1' onmousedown='ItemMouseDown(this)' itemindex="+
-        i+" ><img src='image/user1.jpg' alt=''/><span class='name'>"+
+        i+" > <span class='glyphicon glyphicon-user'></span><span class='name'>"+
         element.LastUname+"</span><span class='time'>"+
         element.LastTime +"</span><span class='preview'>"+
         element.Subject +"</span></li>"
