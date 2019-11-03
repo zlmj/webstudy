@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>讨论主题</title>
+    <meta name="keywords" content="practice">
+    <meta name="author" content="fanjun">
+    <meta name="description" content="fanjun 2019.10.15 web练习-html,css,js">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topBar" id="chatSubject">
+            <span id="chatTitle">ZLSOFT讨论组</span>
+            <img src="img/logo2.png" id="imgLogo">
+        </div>
+        <div class="center" id="chatContent">
+            <p>系统消息:张三已加入讨论</p>
+            <div class="record recordLeft">
+                <span class="userName"> 张三 &nbsp;&nbsp; 2019-10-17 20:46:29</span>
+                <span class="userImg"></span>
+                <span class="message">啊手动阀手动阀</span>
+            </div>
+            <div class="record recordRight">
+                <span class="userName"> 范俊 &nbsp;&nbsp; 2019-10-17 20:00:00</span>
+                <span class="userImg"></span>
+                <span class="message">发士大夫撒地方</span>
+            </div>
+        </div>
+        <div class="bottom" id="chatInput">
+            <input id="textMsg"></input>
+            <button type="button" class="sendBtn" onclick="sendMsg()">发&nbsp;送</button>
+        </div>
+    </div>
+</body>
+</html>

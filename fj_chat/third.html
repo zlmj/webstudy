@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>讨论主题</title>
+    <meta name="author" content="fanjun">
+    <meta name="keywords" content="practice">
+    <meta name="description" content="fanjun 2019.11.03 web练习-bootstrap">
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/third.css">
+    <script src="js/second.js"></script>    
+</head>
+
+<body>
+    <nav class="userbar navbar navbar-inverse navbar-fixed-top"><!-- navbar-default  -->
+        <div class="container">
+            <!--小屏幕导航按钮和logo-->
+            <div class="navbar-header">
+                <a href="http://www.zlsoft.com/bbs/forum.php?mod=forumdisplay&fid=93" class="navbar-brand" style="width:180px;">
+                    <img class="logo" src="img/logo2.png" style="height:43px;">
+                </a>
+            </div>
+            <div class="navbar-header">
+            <a class="navbar-brand" href="#">练习项目:讨论组</a>
+            <!-- <a href="http://www.zlsoft.com/bbs/forum.php?mod=forumdisplay&fid=93">
+                <img class="logo" src="img/logo2.png">
+            </a> -->
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="../index.html">首页</a></li>
+                <li class="active"><a href="#">我的练习</a></li>
+                <li><a href="https://github.com/fanjun365" target="_blank" id="user-my-home">主页</a></li>
+                <li><a href="#about">关于</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="container message-wrapper">
+        <div class="row">
+            <div class="col-md-4 message-list">
+                <!-- <div class="search-section">
+                    <div class="search-body">
+                        <span class="search-icon"></span><input value="" class="search-inputer"
+                            placeholder="搜索讨论组">
+                    </div>
+                </div> -->
+                <div class="chat-contacts-list">
+                    <div class="no-chat-contact" id="no-chat-contact">没有参与任何讨论</div>
+                    <ul class="chat-list-item" id="chat-list-item">
+                        <li class="chat-list-item item" data-key="1" onclick="loadChatRecords()">
+                            <img src="img/face/001.jpg" alt="">
+                            <span class="title">讨论组一</span>
+                            <span class="time">10-25 09:00</span>
+                            <span class="preview">I was wondering...</span>
+                        </li>
+                        <li class="chat-list-item item active" data-key="2" onclick="loadChatRecords(this)">
+                            <img src="img/face/001.jpg" alt="">
+                            <span class="title">Web练习讨论组-课时2</span>
+                            <span class="time">10-26 22:00</span>
+                            <span class="preview">I've forgotten how it felt before</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <div class="contacts-editor">
+                    <div class="trigger-btn">全部标为已读</div>
+                </div> -->
+            </div>
+            <div class="col-md-8 message-body">
+                <div class="center" id="chatContent">
+                    <p>系统消息:张三已加入讨论</p>
+                    <div class="record recordLeft">
+                        <span class="userName"> 张三 &nbsp;&nbsp; 2019-10-17 20:46:29</span>
+                        <span class="userImg"></span>
+                        <span class="message">啊手动阀手动阀</span>
+                    </div>
+                    <div class="record recordRight">
+                        <span class="userName"> 范俊 &nbsp;&nbsp; 2019-10-17 20:00:00</span>
+                        <span class="userImg"></span>
+                        <span class="message">发士大夫撒地方</span>
+                    </div>
+                </div>
+                <nav class="navbar navbar-fixed-bottom">
+                    <div class="bottom" id="chatInput">
+                        <input id="textMsg"></input>
+                        <button type="button" class="sendBtn" onclick="sendMsg()">发&nbsp;送</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/second.js"></script>
+</body>
+
+</html>

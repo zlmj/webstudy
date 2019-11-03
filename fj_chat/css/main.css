@@ -1,0 +1,256 @@
+/* fanjun 2019.10.15 web练习-html,css,js */
+
+/* 快速回顾
+    **************************************************************************************************
+    派生选择器（通过依据元素在其位置的上下文关系来定义样式）
+        1.列表中的 strong 元素变为斜体字
+            li strong {
+                font-style: italic;
+                font-weight: normal;
+            }
+    id 选择器以 "#" 来定义
+        1.分别定义元素的颜色为红色和绿色：
+            #red {color:red;}
+            #green {color:green;}
+            应用：
+            <p id="red">这个段落是红色。</p>
+            <p id="green">这个段落是绿色。</p>
+        2.可以与派生选择器结合应用。应用于出现在 id 是 sidebar 的元素内的段落：
+            #sidebar p { font-style: italic; text-align: right; margin-top: 0.5em; }
+    类选择器以 "." 显示
+        1.为所有拥有 center 类的 HTML 元素均为居中：
+            .center {text-align: center}
+            应用：
+            <h1 class="center">This heading will be center-aligned</h1>
+        2.可被用作派生选择器。类名为 fancy 的更大的元素内部的表格单元都会以灰色背景显示橙色文字（名为 fancy 的更大的元素可能是一个表格或者一个 div）：
+            .fancy td {	color: #f60; background: #666; }
+        3.可基于它们的类而被选择。图片垂直对起方式：
+            img.top {vertical-align:text-top}
+            img.bottom {vertical-align:text-bottom}
+            应用：
+            <p>这是一幅<img class="top" border="0" src="/i/eg_cute.gif" />位于段落中的图像。</p> 
+            <p>这是一幅<img class="bottom" border="0" src="/i/eg_cute.gif" />位于段落中的图像。</p>
+            ------------
+            img.x {position:absolute;left:0px;top:0px;z-index:-1}
+            应用：
+            <h1>这是一个标题</h1>
+            <img class="x" src="/i/eg_mouse.jpg" /> 
+            <p>默认的 z-index 是 0。Z-index -1 拥有更低的优先级。</p>           
+    属性选择器（为不带有 class 或 id 的表单设置样式时特别有用）
+        1.为带有 title 属性的所有元素设置样式：
+            [title] { color:red; }
+        2.为 title="zlagile" 的所有元素设置样式：
+            [title=zlagile] { border:5px solid blue; }
+        3.为包含指定值的 title 属性的所有元素设置样式。适用于由空格分隔的属性值：
+            [title~=hello] { color:red; }
+        4.为带有包含指定值的 lang 属性的所有元素设置样式。适用于由连字符分隔的属性值：
+            [lang|=en] { color:red; }
+
+    **************************************************************************************************
+    内部样式表（当单个文档需要特殊的样式时，就应该使用内部样式表）
+    <head>
+    <style type="text/css">
+      hr {color: sienna;}
+      p {margin-left: 20px;}
+      body {background-image: url("images/back40.gif");}
+    </style>
+    </head>
+
+    内联样式（慎用。使用场景：当样式仅需要在一个元素上应用一次时），在相关的标签内使用样式（style）属性
+    <p style="color: sienna; margin-left: 20px">This is a paragraph</p>
+
+    多重样式（属性在不同的样式表中被同样的选择器定义），那么属性值将从更具体的样式表中被继承过来。
+
+    **************************************************************************************************
+    定位。position 属性值的含义：
+        static
+        元素框正常生成。块级元素生成一个矩形框，作为文档流的一部分，行内元素则会创建一个或多个行框，置于其父元素中。
+        relative
+        元素框偏移某个距离。元素仍保持其未定位前的形状，它原本所占的空间仍保留。
+        absolute
+        元素框从文档流完全删除，并相对于其包含块定位。包含块可能是文档中的另一个元素或者是初始包含块。元素原先在正常文档流中所占的空间会关闭，就好像元素原来不存在一样。元素定位后生成一个块级框，而不论原来它在正常流中生成何种类型的框。
+        fixed
+        元素框的表现类似于将 position 设置为 absolute，不过其包含块是视窗本身    
+
+    **************************************************************************************************
+*/
+
+* {
+    padding:0;
+    margin:0;
+}
+
+.recordLeft:before, .recordRight:before, .recordLeft:after, .recordRight:after {
+    box-sizing: border-box; 
+    display: table;
+    content: " ";
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.topBar {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 48px;
+    font-size: 22px;
+    line-height: 45px;    
+    text-align: center;
+    color: #fff;
+    background-color: #337ab7 
+}
+
+.center {
+    position: absolute;
+    text-align: center;
+    padding: 50px 0;
+    width: 100%;
+    /* height: calc(100% - 100px); */
+    background: url(../img/bg3.jpg) round;
+}
+
+.center p {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #999;
+    border-radius: 5px;
+    color: #fff;
+    margin: 5px 0;
+}
+
+.record {
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    /* 以下两个属性是关键：实现消息记录行 */
+    clear: both;    /* 在左右两侧均不允许浮动元素。 */
+    display: table; /* 作为块级表格来显示，表格前后带有换行符。 */
+}
+
+.recordLeft .userName {
+    position: absolute;
+    font-size: 12px;
+    left: 42px;
+}
+
+.recordLeft .userImg {
+    float: left;
+    width: 40px;
+    height: 40px;
+    background: url(../img/face/001.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.recordRight .userName {
+    position: absolute;
+    font-size: 12px;
+    right: 52px;
+}
+
+.recordRight .userImg {
+    float: right;
+    width: 40px;
+    height: 40px;
+    background: url(../img/face/003.jpg) no-repeat;
+    background-size: 100% 100%;
+    margin-right: 10px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    overflow-wrap: break-word;
+}
+
+
+.recordLeft .message {
+    float: left;
+    text-align: left;
+    background-color: #EEE9E9;
+}
+
+.recordRight .message {
+    float: right;
+    text-align: right;
+    color: #fff;
+    background-color: #69a71e;
+    opacity: 0.6;
+}
+
+.bottom {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    height: 50px;
+    width: calc(100% - 20px);
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #fff;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+}
+
+.bottom input {
+    font-size: 16px;
+    float: left;
+    width: calc(100% - 165px);
+    height: 50px;
+    padding: 0 10px;
+    color: var(--dark);
+    border: none;
+    outline: none;
+    font-weight: 400;
+    background-color: #FFFACD;
+    opacity: 0.5;
+}
+
+.bottom button {
+    font-size: 18px;
+    float: right;
+    width:  138px;
+    height: 50px;
+    border-radius: 6px;
+ /*    
+    transform: translate(-5%);
+    margin-right: 12px; */
+    border: none;
+    color: #fff;
+    background: #00B2EE;
+}
+    .bottom button:hover {
+        font-size: 20px;
+        opacity: 0.8;
+    }
+
+
+#imgLogo {
+    /*float:right;*/
+    /* border: 1px dotted blue; */
+    position: fixed;
+    right: 8px;
+    top: 1px;
+    width: 110px;
+    height: 43px;
+    z-index: 1;
+    opacity: 0.3;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+    margin-top: 2px;
+}
+    #imgLogo:hover {
+        opacity: 1;
+        filter: alpha(opacity=100); /* For IE8 and earlier */
+    }
