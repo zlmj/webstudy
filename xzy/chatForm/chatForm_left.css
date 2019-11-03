@@ -1,0 +1,92 @@
+﻿
+#toolArea {
+    position: relative;
+    height: 95px;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+    #toolArea::after, .person::after {
+        position: absolute;
+        left: 5%;
+        bottom: 0px;
+        display: block;
+        content: "";
+        width: 90%;
+        height: 1px;
+        border-top: solid 1px;
+        border-color: rgb(230,230,230);
+    }
+
+    #toolArea #inputSearch {
+        position: relative;
+        top: 25px;
+        width: 190px;
+        height: 30px;
+    }
+
+    #toolArea #btnSearch {
+        position: relative;
+        top: 33px;
+        left: 5px;
+        width: 32px;
+        height: 32px;
+        background-color: rgb(0,176,255);
+        border: none;
+        border-radius: 50%;
+        background-image: url(../resource/image/nameType.png);
+        background-repeat: no-repeat;
+        background-position-x: 9px;
+        background-position-y: 8px;
+        cursor: pointer;
+    }
+
+
+#personArea {
+    margin: 0px;
+    padding: 0px;
+    font-size: 15px;
+}
+
+    #personArea .photo {
+        float: left;
+        position: relative;
+        margin-right: 8px;
+    }
+
+    #personArea .time {
+        position: absolute;
+        right: 10%;
+    }
+
+.person {
+    padding: 10px 10% 0px 10%;
+    height: 60px;
+    overflow: hidden;
+}
+
+.person {
+    position: relative;
+    cursor: pointer;
+}
+
+.active{
+    background-color: rgb(0,176,255);
+    top: -1px;
+    color: white;
+}
+
+#personArea .active::after {
+    border: none;
+}
+
+.previewMsg, .time {
+    color: gray;
+}
+
+.previewMsg {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

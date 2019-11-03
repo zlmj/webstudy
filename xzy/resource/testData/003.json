@@ -1,0 +1,13 @@
+[
+	{
+		"userName": "向中燕",
+		"time": "2019-10-20 18:40",
+		"msg": "定义js语法的最新的标准是？",
+		"img": "../resource/image/user1.jpg"
+	}, {
+		"userName": "李雷",
+		"time": "2019-10-20 18:41",
+		"msg": "最新的js版本是ECMAScript 6",
+		"img": "../resource/image/user1.jpg"
+	}
+]
