@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>聊天窗口</title>
+    <link href="../resource/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="chatForm.css" rel="stylesheet" type="text/css" />
+    <script src="../resource/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../resource/js/vue.min.js"></script>
+    <script type="text/javascript" src="../resource/js/dateExtend.js"></script>
+    <script type="text/javascript" src="chatForm.js"></script>
+    <script type="text/javascript" src="../resource/testData/chatListData.js"></script>
+</head>
+<body>
+    <div id="wrapper" class="container">
+        <div class="row">
+            <div id="left" class="col-md-4">
+                <div id="toolArea">
+                    <input id="inputSearch" type="text" placeholder="搜索" />
+                    <button id="btnSearch"></button>
+                </div>
+                <ul id="personArea">
+                    <template v-for="per in allPerson">
+                        <li v-bind:class="{active: per.chatID == currentMsgID}" class="person" v-on:click="changeActive(per.chatID)">
+                            <img class="photo" v-bind:src="per.img" alt="photo" />
+                            <span class="chatID" >{{per.chatID}}</span>
+                            <span class="userName">{{per.title}}</span>
+                            <span class="time">{{per.lastTime}}</span>
+                            <div class="previewMsg">{{per.lastMsg}}</div>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+            <div id="right" class="col-md-8">
+                <div id="titleArea">
+                    <a href="http://www.zlsoft.com" target="_blank">
+                        <img class="logo" src="../resource/image/logo.png" alt="logo" /></a>
+                    <div class="titleText">聊天窗口</div>
+                </div>
+                <div id="messageArea">
+                    <template v-for="msgItem in msgList">
+                        <div v-bind:class="{reciveMsgItem: msgItem.userName != currentUser, sendMsgItem: msgItem.userName == currentUser}">
+                            <div class="msgTitle">{{msgItem.userName + "    " + msgItem.time}}</div>
+                            <div>
+                                <img class="photo" v-bind:src="msgItem.img">
+                                <div class="msgContent">{{msgItem.msg}}</div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div id="sendArea">
+                    <input id="inputMsg" type="text" v-on:keydown.enter="sendMsg()" v-model="inputValue" />
+                    <button id="btnSend" type="button" v-on:click="sendMsg()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
