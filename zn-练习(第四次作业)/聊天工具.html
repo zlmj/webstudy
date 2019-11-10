@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>聊天工具</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="./js/index.js"></script>
+    <style>
+        .sysmsg {
+            display: block;
+            text-align: -webkit-center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper" id="wrapper">
+        <div class="container">
+            <div class="left">
+                <div class="top">
+                    <input type="text" placeholder="搜索" />
+                    <a href="javascript:;" class="search"></a>
+                </div>
+                <ul class="people">
+                    <li v-for="ch in chats" class="person">
+                        <img v-bind:src="ch.img" alt="" />
+                        <span class="name">{{ch.name}}</span>
+                        <span class="time">{{ch.date}}</span>
+                        <span class="preview">{{ch.lstmsg}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="right">
+                <div class="top">
+                    <span class="name">乡村爱情讨论组</span>
+                </div>
+                <div class="chat">
+                    <div v-for="his in hismsg" v-bind:class="[his.sysmsg ?'sysmsg':'msgitem']">
+                        <span class="himg" v-bind:class="[his.psn===curpsn ?'right':'']" v-show="!his.sysmsg"></span>
+                        <div class="ut" v-bind:class="[his.psn===curpsn ?'right':'']" v-show="!his.sysmsg">{{his.psn}}
+                        </div>
+                        <div class="bubble" v-bind:class="[his.psn===curpsn ?'me':'you']" v-show="!his.sysmsg">
+                            {{his.msg}}
+                        </div>
+                        <span class="sysmsgitem" v-show="his.sysmsg"> {{his.msg}}</span>
+                    </div>
+                </div>
+
+                <div class="write">
+                    <a href="JavaScript:;" class="write-link attach"></a>
+                    <input id="tmsg" type="text" @keyup.enter="sendmsg" v-model ="msg" />
+                    <div class="button">
+                        <button type="button" @click="sendmsg">发送</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
