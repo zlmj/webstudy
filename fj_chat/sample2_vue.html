@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta name="description" content="fanjun 2019.11.09 web练习-vue">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/vue.js"></script>    
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <p>原始字符串: "{{ message }}"</p>
+        <p>反向字符串: "{{ reversedMessage }}"</p>
+        <button onclick="vm.message = 'zlbh'">vm.message = 'zlbh'</button>
+        <br>
+        <input id="txt1" value="Hello Vue!" v-focus><!-- v-focus -->
+        <button onclick="vm.message = $('#txt1').val()">vm.message = input</button>
+        <br><br>
+        <p>{{ num }}</p>
+        <p>{{ aDouble }}</p>
+        <p>{{ aPlus }}</p>
+        <button onclick="vm.num++">加1</button>
+        <button onclick="vm.num--">减1</button>
+        <button onclick="vm.aPlus=10">aPlus:10-1</button>
+        <br><br>
+        <p>computed: "{{ time1 }}"</p>
+        <p>methods:  "{{ time2() }}"</p>
+        <br><br>
+        <button onclick="">unwatch</button>
+        <p>{{ output }}</p>
+    </div>
+    <br><br>
+    <hr style=" height:2px;border:none;border-top:2px dotted #185598;" /> 
+    <br><br>
+    <div id="example" v-demo:foo.a.b="message"></div>
+    <br><br><br>
+    <div id="test">
+        <div>{{ message }}</div>
+        <div>{{ list }}</div>
+        <div>{{ web }}</div>
+        <br>
+       <!--  <div v-for = "item in list" :key="index">{{ item }}</div>
+        <br>
+        <div v-for = "(item,index) in list" :key="index">{{ item }}的索引值是{{ index }}</div>
+        <br>
+        <div v-for = "(value,key,index) in web" :key="index">{{ index }} {{ key }} 的网址是 ： {{ value }}</div> -->
+        <!--在数组里面，小括号里面的参数第一位是value值，第二位是索引值
+            在json里面，第一位是value值，第二位是key值，第三位是索引值-->
+        <div v-for = "(item,index) in chat" :key="index">{{ item.title }}的索引值是{{ index }}</div>
+    </div>
+    <script>
+        // 注册一个全局自定义指令 v-focus
+        Vue.directive('focus', {
+          // 当绑定元素插入到 DOM 中。
+          inserted: function (el) {
+            // 聚焦元素
+            el.focus()
+          }
+        })
+        var vm = new Vue({
+          el: '#app',
+          data: {
+            message: 'Hello Vue!',
+            _name: 'abc',
+            num: 1,
+            output: ''
+          },
+          computed: {
+            reversedMessage: function () {
+              return this.message.split('').reverse().join('')
+            },
+            // 仅读取，值只须为函数
+            aDouble: function () {
+              return this.num * 2
+            },
+            // 读取和设置
+            aPlus: {
+              get: function () {
+                return this.num + 1
+              },
+              set: function (v) {
+                this.num = v - 1
+              }
+            },
+            time1: function () {
+                return (new Date()).toLocaleTimeString()
+            }
+          },
+          methods: {
+            time2: function () {
+              return (new Date()).toLocaleTimeString()
+            },
+            unwatch: function (name) {
+              vm.$watch(name).unwatch();
+            }
+          },
+          watch: {
+            message: function (val, oldVal) {
+              this.output += 'message 旧值为[' + oldVal + ']，新值为[' + val + '] ## ';
+            },
+            num: function (val, oldVal) {
+              this.output += 'num 旧值为[' + oldVal + ']，新值为[' + val + '] ## ';
+              // if(val === 99){
+              //   unwatch();
+              // }
+            }
+          },
+          beforeCreate(){
+            console.log('beforeCreate');
+          },
+          created(){
+            console.log('created');
+          },
+          beforeMount(){
+            console.log('beforeMount');
+          },
+          mounted(){
+            console.log('mounted');
+          },
+          beforeUpdate(){
+            console.log('beforeUpdate');
+          },
+          updated(){
+            console.log('updated');
+            //this.$destroy();    
+          },
+          beforeDestroy(){
+            console.log('beforeDestroy');
+          },
+          destroyed(){
+            console.log('destroyed');
+          },
+        });
+        console.log(vm.message);
+        console.log(vm.$data.message);
+        console.log(vm._name);vm
+        console.log(vm.$data._name);
+        console.log(vm.reversedMessage);
+        //vm.message = 'zlbh';
+    </script>
+    <script>
+        Vue.directive('demo', {
+          bind: function (el, binding, vnode) {
+            var s = JSON.stringify
+            el.innerHTML =
+              'name: '       + s(binding.name) + '<br>' +
+              'value: '      + s(binding.value) + '<br>' +
+              'expression: ' + s(binding.expression) + '<br>' +
+              'argument: '   + s(binding.arg) + '<br>' +
+              'modifiers: '  + s(binding.modifiers) + '<br>' +
+              'vnode keys: ' + Object.keys(vnode).join(', ')
+          }
+        })
+        new Vue({
+          el: '#example',
+          data: {
+            message: 'hello!'
+          }
+        })
+    </script>
+    <script>
+        new Vue({
+            el:"#test",
+            data:{
+                message:"infor",
+                list:["a","b","c","d","e"],
+                web:{
+                    "百度":"https://www.baidu.com",
+                    "搜狐":"https://www.sohu.com",
+                    "新浪":"https://www.sina.com",
+                    "淘宝":"https://www.taobao.com"
+                },
+                chat: [
+                  { key: "1", title: "讨论组一", preview: "说你呢，胡言乱语...", time: '10-25 09:00' }, 
+                  { key: "2", title: "Web练习讨论组-课时2", preview: "怎么能够偷懒呢？", time: '10-26 22:00' }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

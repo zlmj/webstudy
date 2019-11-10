@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <title>讨论主题</title>
+    <meta name="keywords" content="practice">
+    <meta name="author" content="fanjun">
+    <meta name="description" content="fanjun 2019.11.09 web练习-vue">
+    <link rel="stylesheet" type="text/css" href="css/second.css">
+</head>
+
+<body>
+    <div class="header-wrapper">
+        <div class="top-header">
+            <a href="http://www.zlsoft.com/bbs/forum.php?mod=forumdisplay&fid=93">
+                <img class="logo" src="img/logo2.png">
+            </a>
+        </div>
+    </div>
+    <div id="userbar" class="userbar">
+        <div class="my-info menu-hide" onmouseover="this.className='my-info menu-show'"
+            onmouseout="this.className='my-info menu-hide'">
+            <span>
+                <a href="https://github.com/fanjun365" target="_blank" id="username" class="g-un"
+                    enable="false">FanJun<i class="i-arrow-down"></i></a>
+            </span>
+            <div class="dropdown-menu">
+                <a href="https://github.com/fanjun365" target="_blank" id="user-my-home">我的主页</a>
+                <a href="">退出</a>
+            </div>
+        </div>
+        &nbsp;|&nbsp;
+        <span>
+            <a href="#">我的练习</a>
+        </span>
+        &nbsp;|&nbsp;
+        <span>
+            <a href="../index.html">首页</a>
+            &nbsp;
+        </span>
+    </div>
+    <div class="message-wrapper" id="message-wrapper">
+        <div class="message-navigator">
+            <div class="navigator-item navigator-item-chat active"></div>
+            <div class="navigator-item navigator-item-letter"></div>
+            <div class="navigator-item navigator-item-setting"></div>
+        </div>
+        <div class="message-list">
+            <div class="search-section">
+                <div class="search-body">
+                    <span class="search-icon"></span><input value="" class="search-inputer"
+                        placeholder="搜索讨论组">
+                </div>
+            </div>
+            <div class="chat-contacts-list">
+                <div class="no-chat-contact hidden" id="no-chat-contact">没有参与任何讨论</div>
+                <ul class="chat-list-item" id="chat-list-item">
+                    <li v-for = "(item,index) in chatList" :key="index" class="chat-list-item item" v-bind:data-key="item.key" onclick="loadChatRecords(this)">                        
+                        <img src="img/face/001.jpg" alt="">
+                        <span class="title">{{ item.title }}</span>
+                        <span class="time">{{ item.time }}</span>
+                        <span class="preview">{{ item.preview }}</span>
+                    </li>
+                    <!-- <li class="chat-list-item item" data-key="1" onclick="loadChatRecords(this)">
+                        <img src="img/face/001.jpg" alt="">
+                        <span class="title">讨论组一</span>
+                        <span class="time">10-25 09:00</span>
+                        <span class="preview">I was wondering...</span>
+                    </li>
+                    <li class="chat-list-item item active" data-key="2" onclick="loadChatRecords(this)">
+                        <img src="img/face/001.jpg" alt="">
+                        <span class="title">Web练习讨论组-课时2</span>
+                        <span class="time">10-26 22:00</span>
+                        <span class="preview">I've forgotten how it felt before</span>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="contacts-editor">
+                <div class="trigger-btn">全部标为已读</div>
+            </div>
+        </div>
+        <div class="message-body">
+            <div class="center" id="chatContent">
+                <div v-for = "(item,index) in chatContent" :key="index" class="record recordLeft">
+                    <span class="userName"> {{ item.uname }} &nbsp;&nbsp; {{ item.time }}</span>
+                    <span class="userImg"></span>
+                    <span class="message">{{ item.msg }}</span>
+                </div>
+                <!-- <p>系统消息:张三已加入讨论</p>
+                <div class="record recordLeft">
+                    <span class="userName"> 张三 &nbsp;&nbsp; 2019-10-17 20:46:29</span>
+                    <span class="userImg"></span>
+                    <span class="message">啊手动阀手动阀</span>
+                </div>
+                <div class="record recordRight">
+                    <span class="userName"> 范俊 &nbsp;&nbsp; 2019-10-17 20:00:00</span>
+                    <span class="userImg"></span>
+                    <span class="message">发士大夫撒地方</span>
+                </div> -->
+            </div>
+            <div class="bottom" id="chatInput">
+                <input id="textMsg" v-focus></input>
+                <button type="button" class="sendBtn" onclick="sendMsg()">发&nbsp;送</button>
+            </div>
+        </div>
+    </div>
+    <div id="app">
+        <input id="txt1" value="Hello Vue!" v-focus><!-- v-focus -->
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/fourth.js"></script>
+    <script>
+    </script>
+
+</body>
+
+</html>
