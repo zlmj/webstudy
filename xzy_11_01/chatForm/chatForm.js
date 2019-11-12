@@ -38,7 +38,7 @@ window.onload = function() {
         }
     });
 
-    //发消息后，滚动动条到底。
+    //发消息后，滚动条到底。
     vm.$watch('activeChatMsg', function (nval, oval) {
         var msgArea = document.getElementById("messageArea");
         msgArea.scrollTop = msgArea.scrollHeight;
