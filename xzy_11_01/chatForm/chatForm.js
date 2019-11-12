@@ -1,22 +1,31 @@
-window.onload = function() {
+window.onload = function () {
     var vm = new Vue({
         el: "#wrapper",
         data: {
             loginUser: "向中燕",                //登陆用户名
             allPerson: chatListData,            //所有讨论组
-            activePersonID: "001",              //选中的讨论组        
-            activeChatMsg: msgHistory["001"],   //讨论组的历史消息
+            activePersonID: "001",              //选中的讨论组ID
+            activeChatMsg: msgHistory["001"],   //选中的讨论组的历史消息
+            chatFormTitle: chatListData[0].title,   //聊天窗口标题
             inputValue: null,                   //消息输入框的内容
             searchTxt: null                     //搜索框的内容
         },
         methods: {
             //切换焦点行
-            changeActive: function(id) {
+            changeActive: function (id) {
                 this.activePersonID = id;
                 this.activeChatMsg = msgHistory[id];
+
+                //更新聊天窗口标题
+                for (var i = 0; i < chatListData.length; i++) {
+                    if (chatListData[i].chatID == id) {
+                        this.chatFormTitle = chatListData[i].title;
+                        break;
+                    }
+                }
             },
             //发消息
-            sendMsg: function() {
+            sendMsg: function () {
                 if (this.inputValue == null || this.inputValue == "") {
                     return;
                 }
@@ -31,7 +40,7 @@ window.onload = function() {
 
                 this.activeChatMsg.push(newMsg);
                 this.inputValue = null;
-                                
+
                 var input = document.getElementById("inputMsg");
                 input.focus();
             }
