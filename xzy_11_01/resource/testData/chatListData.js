@@ -43,7 +43,7 @@ var msgData_002 = [
     }, {
         "userName": "李刚",
         "time": "2019-10-19 18:35",
-        "msg": "html通过属性class和id定位元素",
+        "msg": "html用于定位元素的属性有class和id",
         "img": "../resource/image/user3.jpg"
     }
 ]
