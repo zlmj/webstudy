@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <title>聊天窗口</title>
@@ -12,7 +11,6 @@
     <script type="text/javascript" src="chatForm.js"></script>
     <script type="text/javascript" src="../resource/testData/chatListData.js"></script>
 </head>
-
 <body>
     <div id="wrapper" class="container">
         <div class="row">
@@ -21,18 +19,17 @@
                     <input id="inputSearch" type="text" placeholder="搜索" v-model="searchTxt" />
                 </div>
                 <ul id="personArea">
-                    <template v-for="per in allPerson">
-                        <li class="person" 
-                            v-bind:class="{active: per.chatID == activePersonID}" 
-                            v-on:click="changeActive(per.chatID)" 
-                            v-show="searchTxt==null || searchTxt=='' || per.title.indexOf(searchTxt) > -1">
-                                <img class="photo" v-bind:src="per.img" alt="photo" />
-                                <span class="chatID" >{{per.chatID}}</span>
-                                <span class="userName">{{per.title}}</span>
-                                <span class="time" v-bind:class="{grayColor:per.chatID != activePersonID}">{{per.lastTime}}</span>
-                                <div class="previewMsg" v-bind:class="{grayColor:per.chatID != activePersonID}">{{per.lastMsg}}</div>
-                        </li>
-                    </template>
+                    <li class="person"
+                        v-for="per in allPerson"
+                        v-bind:class="{active: per.chatID == activePersonID}"
+                        v-on:click="changeActive(per.chatID)"
+                        v-show="searchTxt==null || searchTxt=='' || per.title.indexOf(searchTxt) > -1">
+                        <img class="photo" v-bind:src="per.img" alt="photo" />
+                        <span class="chatID">{{per.chatID}}</span>
+                        <span class="userName">{{per.title}}</span>
+                        <span class="time" v-bind:class="{grayColor:per.chatID != activePersonID}">{{per.lastTime}}</span>
+                        <div class="previewMsg" v-bind:class="{grayColor:per.chatID != activePersonID}">{{per.lastMsg}}</div>
+                    </li>
                 </ul>
             </div>
             <div id="right" class="col-md-8">
@@ -61,5 +58,4 @@
         </div>
     </div>
 </body>
-
 </html>
