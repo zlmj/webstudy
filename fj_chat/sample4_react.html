@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <title>例子-双向绑定</title>
+</head>
+
+<body>
+    <div id="root1"></div>
+</body>
+ 
+<script type="text/babel">
+ 
+    //继承实例
+    window.onload=()=>{
+        class TabList extends React.Component{
+            constructor(){
+               super();                 //继承关键字
+               this.state={
+                   value:"123456789"    //设置默认值
+               } 
+            };
+            change(e){
+                console.log(e.target.value);    //获取修改后的值
+                this.setState({
+                    value:e.target.value
+                })
+            }
+            //渲染
+            render(){
+                var flag=this.state.flag;
+                return (
+                    <div>
+                        <input value={this.state.value}  onChange={(event)=>{this.change(event)}}/>
+                        <p>{this.state.value}</p>
+                    </div>
+                )
+ 
+            }
+        };
+        ReactDOM.render(
+            <TabList name="凌晨"/>,
+            document.getElementById("root1")
+        );
+    }
+</script>
+</html>
