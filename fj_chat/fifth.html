@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <title>讨论主题</title>
+    <meta name="keywords" content="practice">
+    <meta name="author" content="fanjun">
+    <meta name="description" content="fanjun 2019.11.17 web练习-React">
+    <link rel="stylesheet" type="text/css" href="css/second.css">
+</head>
+
+<body>
+    <div class="header-wrapper">
+        <div class="top-header">
+            <a href="http://www.zlsoft.com/bbs/forum.php?mod=forumdisplay&fid=93">
+                <img class="logo" src="img/logo2.png">
+            </a>
+        </div>
+    </div>
+    <div id="userbar" class="userbar">
+        <div class="my-info menu-hide" onmouseover="this.className='my-info menu-show'"
+            onmouseout="this.className='my-info menu-hide'">
+            <span>
+                <a href="https://github.com/fanjun365" target="_blank" id="username" class="g-un"
+                    enable="false">FanJun<i class="i-arrow-down"></i></a>
+            </span>
+            <div class="dropdown-menu">
+                <a href="https://github.com/fanjun365" target="_blank" id="user-my-home">我的主页</a>
+                <a href="">退出</a>
+            </div>
+        </div>
+        &nbsp;|&nbsp;
+        <span>
+            <a href="#">我的练习</a>
+        </span>
+        &nbsp;|&nbsp;
+        <span>
+            <a href="../index.html">首页</a>
+            &nbsp;
+        </span>
+    </div>
+    <div class="message-wrapper" id="message-wrapper">
+        <div class="message-navigator">
+            <div class="navigator-item navigator-item-chat active"></div>
+            <div class="navigator-item navigator-item-letter"></div>
+            <div class="navigator-item navigator-item-setting"></div>
+        </div>
+        <div class="message-list">
+            <div class="search-section">
+                <div class="search-body">
+                    <span class="search-icon"></span><input value="" class="search-inputer"
+                        placeholder="搜索讨论组">
+                </div>
+            </div>
+            <div class="chat-contacts-list" id="chat-contacts-list">
+                <ul class="chat-list-item" id="chat-list-item" />
+            </div>
+            <div class="contacts-editor">
+                <div class="trigger-btn">全部标为已读</div>
+            </div>
+        </div>
+        <div class="message-body">
+            <div class="center" id="chatContent" />
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script src="js/fifth.js"></script>
+    
+    <script type="text/babel">
+        var uid = getQueryVariable("uid");
+        var currentUser = queryUser(uid);
+        var chatList = queryChats(uid);
+
+        function ChatMsgItem(prop){
+            return (
+                <div className={prop.data.uname==currentUser.uname?"record recordRight":"record recordLeft"}>
+                    <span className="userName"> { prop.data.uname } &nbsp;&nbsp; { prop.data.time }</span>
+                    <span className="userImg"></span>
+                    <span className="message">{prop.data.msg}</span>
+                </div>
+            );
+        };
+        class ChatMsgs extends React.Component {
+            sendMsg1 = () => {
+                sendMsg();
+            };
+            render() {
+                var data=[];
+                var chatList = this.props.data;
+                console.log('>>>ChatMsgs.render<<<');
+                console.log(this.props);
+                for(let i=0;i<chatList.length;i++){
+                    // data.push(<ChatListItem2 key={i} cid={chatList[i].cid} title={chatList[i].title} time={chatList[i].time} preview={chatList[i].preview} />);
+                    data.push(<ChatMsgItem key={i} data={chatList[i]} />);
+                };
+                data.push(<div key='a' className="bottom" id="chatInput">
+                    <input id="textMsg"></input>
+                    <button type="button" className="sendBtn" onClick={this.sendMsg1}>发&nbsp;送</button>
+                </div>);
+                return data;
+            }
+        }
+
+        function ChatListItem1(prop){
+            return (
+                <li className="chat-list-item item" cid={prop.data.cid}>
+                    <img src="img/face/001.jpg" alt="" />
+                    <span className="title">{prop.data.title}</span>
+                    <span className="time">{prop.data.time}</span>
+                    <span className="preview">{prop.data.preview}</span>
+                </li>
+            );
+        };
+        function ChatListItem2(prop){
+            return (
+                <li className="chat-list-item item" cid={prop.cid}>
+                    <img src="img/face/001.jpg" alt="" />
+                    <span className="title">{prop.title}</span>
+                    <span className="time">{prop.time}</span>
+                    <span className="preview">{prop.preview}</span>
+                </li>
+            );
+        };
+        class ChatListItem3 extends React.Component {
+            handleClick = () => {
+                console.log('this is:', cid);
+            };
+            handleClick2(cid, e){    //事件对象e要放在最后
+                //e.preventDefault();
+                //alert(cid);
+                console.log(cid);
+                var chatMsgs = queryChatRecords(cid);
+                console.log(chatMsgs);
+                ReactDOM.render(
+                    <ChatMsgs data={chatMsgs} />,
+                    document.getElementById('chatContent')
+                ); 
+            };
+            render() {
+                return (
+                    //<li className="chat-list-item item" cid={this.props.data.cid} onClick={this.handleClick}>
+                    <li className="chat-list-item item" cid={this.props.data.cid} onClick={(e) => this.handleClick2(this.props.data.cid, e)}>
+                        <img src="img/face/001.jpg" alt="" />
+                        <span className="title">{this.props.data.title}</span>
+                        <span className="time">{this.props.data.time}</span>
+                        <span className="preview">{this.props.data.preview}</span>
+                    </li>
+                );
+            }
+        };
+        class ChatList extends React.Component {
+            render() {
+                var data=[];
+                for(let i=0;i<chatList.length;i++){
+                    // data.push(<ChatListItem2 key={i} cid={chatList[i].cid} title={chatList[i].title} time={chatList[i].time} preview={chatList[i].preview} />);
+                    data.push(<ChatListItem3 key={i} data={chatList[i]} />);
+                };
+                return data;
+            }
+        }
+
+        if (chatList == null)
+        {
+            ReactDOM.render(
+                <div className="no-chat-contact">没有参与任何讨论</div>,
+                document.getElementById('chat-contacts-list')
+            ); 
+        }
+        else
+        {
+            ReactDOM.render(
+                <ChatList />,
+                document.getElementById('chat-list-item')
+            ); 
+        }
+
+    </script>
+</body>
+
+</html>
