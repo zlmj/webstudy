@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <link href="./lxm-css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./lxm-css/demo.css">
+    <script src="./lxm-js/jquery.min.js"></script>
+    <script src="./lxm-js/bootstrap.min.js"></script>
+    <!-- <script src="./lxm-js/demo.js"></script> -->
+    <!-- <script src="./lxm-js/vue.min.js"></script> -->
+    <title>vue.js</title>
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="row" style="height: 100%;position: relative;">
+            <div class="col-md-4 " style="height: 100%;">
+                <!-- 搜索框 -->
+                <div class="input-group" style="margin-top: 30px;">
+                    <span class="input-group-addon" id="search_img"><span class="glyphicon glyphicon-search"
+                            aria-hidden="true" onclick="search()"></span></span>
+                    <input type="text" class="form-control" id="search_1" placeholder="请输入搜索关键字...">
+                </div>
+        <!-- 用户列表 -->
+        <div class="list">
+                <ul class="list_1">
+                    <li class="list_2"  @click="chatlist" v-for="(item, key, index) in chats">
+                        <img src="./img/user1.jpg" class="list_3 img-responsive img-circle">
+                        <span class="list_4">{{item.subject}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="list_time">{{item.time}}</span>
+                        <span class="list_5">{{item.msg}}</span>
+                    </li>
+                </ul> 
+            </div>      
+                <nav>
+                    <ul class="pager" style="bottom:0px;position: fixed;">
+                        <li><a href="#">上一页</a></li>
+                        <li><a href="#">下一页</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-8" style="height: 100%;">
+                <!-- 头部 -->
+                <div class="header">
+                    <p class="h3 text-center"   >{{title}}</p>
+                    <img src="./img/logo.png" id="logo">
+                </div>
+                <!-- 聊天框content -->
+                <div class="content">
+                    <div class="date">Moday,1:27 PM</div>
+                    <div class="chat-list">
+                        <span class="himg"></span>
+                        <div class="userlist">张三&nbsp;&nbsp;&nbsp;&nbsp;2019-10-14 15:34:20</div>
+                        <div class="comment you">hello,my name is zhangsan</div>
+                    </div>
+                    <div v-for="hs in historymsg" class="chat-list">
+                        <span class="himg" v-bind:class="[ hs.user==='李四'?'right':'' ]"></span>
+                        <div class="userlist" v-bind:class="[ hs.user==='李四'?'right':'' ]">
+                            {{hs.user}}&nbsp;&nbsp;&nbsp;&nbsp;{{hs.time}}</div>
+                        <div class="comment" v-bind:class="[ hs.user==='李四'?'me':'you' ]">{{hs.msg}}</div>
+                    </div>
+                </div>
+                <!-- 底部write 应用了输入框组 -->
+                <div class="input-group" style="position:absolute;bottom:0px;width: 94%;">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-paperclip"
+                            aria-hidden="true"></span></span>
+                    <input type="text" class="form-control" id="tmsg" placeholder="请输入内容" v-model="smsg">
+                    <span class="input-group-addon" @click="send"><span class="glyphicon glyphicon-send"
+                            aria-hidden="true"></span></span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var vm = new Vue({
+                el: "#container",
+                // historymsg:[{user:"张三",time:'2019-10-14 16:42:09',msg:"how are you?"},{user:"李四",time:'2019-10-14 16:42:09',msg:"i'm fan!"},{user:"王五",time:'2019-10-14 16:42:09',msg:"Ok"}],
+                data: {
+                    title: "讨论组的标题",
+                    // active: '张永胜超声检查',
+                    smsg: null,
+                    chats: [{system:"ZLHIS",maincode:"报告",mainID:389101,subject:"孙永胜超声检查",name:"管理员", time: '2019-10-14 16:42:09', msg: "i'm fan!"},{system:"ZLHIS",maincode:"报告",mainID:389101,subject:"心电图",name:"管理员", time: '2019-10-14 16:42:09', msg: "i'm fan!"}],
+                    historymsg: [{ user: "张三", time: '2019-10-14 16:42:09', msg: "how are you?" }, { user: "李四", time: '2019-10-14 16:42:09', msg: "i'm fan!" }, { user: "王五", time: '2019-10-14 16:42:09', msg: "Ok" }],
+                    historymsg1: [{ user: "康康", time: '2019-10-15 16:42:09', msg: "今天过得怎么样" }, { user: "李四", time: '2019-10-14 16:42:09', msg: "很好呀!" }, { user: "康康", time: '2019-10-14 16:42:09', msg: "你好我好大家好" }],
+                },
+                methods: {
+                    // 点击讨论组列表时加载聊天框数据
+                    chatlist: function (item) {
+                        this.title="心电图";
+                        //  alert(this.title);
+                        var historymsg = [{ user: "张三", time: '2019-10-14 16:42:09', msg: "how are you?" }, { user: "李四", time: '2019-10-14 16:42:09', msg: "i'm fan!" }, { user: "王五", time: '2019-10-14 16:42:09', msg: "Ok" }];
+                       this.historymsg=this.historymsg1;
+                        var hei=$('.content').height();
+                        $('.content').scrollTop(hei); 
+                    },
+                    //发送消息
+                    send: function () {
+                        var data = { user: "李四", time: '2019-11-11 18:25:56', msg: "a", msg: this.smsg };
+                        this.historymsg.push(data);
+                        this.smsg = "";
+                        var hei=$('.content').height();
+                        $('.content').scrollTop(hei); 
+                    },
+                },
+                Date: function (formatStr) {
+                    var str = formatStr;
+                    var Week = ['日', '一', '二', '三', '四', '五', '六'];
+
+                    str = str.replace(/yyyy|YYYY/, this.getFullYear());
+                    str = str.replace(/yy|YY/, (this.getYear() % 100) > 9 ? (this.getYear() % 100).toString() : '0' + (this.getYear() % 100));
+
+                    str = str.replace(/MM/, this.getMonth() > 8 ? (this.getMonth() + 1).toString() : '0' + (this.getMonth() + 1));
+                    str = str.replace(/M/g, this.getMonth() + 1);
+
+                    str = str.replace(/w|W/g, Week[this.getDay()]);
+
+                    str = str.replace(/dd|DD/, this.getDate() > 9 ? this.getDate().toString() : '0' + this.getDate());
+                    str = str.replace(/d|D/g, this.getDate());
+
+                    str = str.replace(/hh|HH/, this.getHours() > 9 ? this.getHours().toString() : '0' + this.getHours());
+                    str = str.replace(/h|H/g, this.getHours());
+                    str = str.replace(/mm/, this.getMinutes() > 9 ? this.getMinutes().toString() : '0' + this.getMinutes());
+                    str = str.replace(/m/g, this.getMinutes());
+
+                    str = str.replace(/ss|SS/, this.getSeconds() > 9 ? this.getSeconds().toString() : '0' + this.getSeconds());
+                    str = str.replace(/s|S/g, this.getSeconds());
+
+                    return str;
+                },
+
+
+
+
+
+            })
+        </script>
+</body>>
+
+</html>

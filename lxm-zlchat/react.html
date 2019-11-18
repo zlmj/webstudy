@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <link href="./lxm-css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./lxm-css/demo.css">
+    <script src="./lxm-js/jquery.min.js"></script>
+    <script src="./lxm-js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>react.js</title>
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container"> </div>
+    <script type="text/babel">
+        const historymsgs = [{ user: "张三", time: '2019-10-14 16:42:09', msg: "how are you?" }, { user: "李四", time: '2019-10-14 16:42:09', msg: "i'm fan!" }, { user: "王五", time: '2019-10-14 16:42:09', msg: "Ok" }];
+        var chatlist1 = { subject: "心电图", time: '2019-10-14 16:42:09', msg: "how are you?" };
+        var chatlist2 = { subject: "抽血", time: '2019-10-14 16:42:09', msg: "i'm fan!" };
+        function Chat_list_1(props) {
+            return (
+                <li className="list_2">
+                    <img src="./img/user1.jpg" className="list_3 img-responsive img-circle" />
+                    <span className="list_4">{props.data.subject} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span className="list_time">{props.data.time}</span>
+                    <span className="list_5">{props.data.msg}</span>
+                </li>
+            );
+        }
+
+        function Chat_list_2(props) {
+            return (
+                <li className="list_2">
+                    <img src="./img/user1.jpg" className="list_3 img-responsive img-circle" />
+                    <span className="list_4">{props.data1.subject} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span className="list_time">{props.data1.time}</span>
+                    <span className="list_5">{props.data1.msg}</span>
+                </li>
+            );
+        }
+
+        // 讨论组列表
+        function Chat_list() {
+            return (
+                <div className="col-md-4 ">
+                    <div className="input-group">
+                        <span className="input-group-addon" id="search_img"><span className="glyphicon glyphicon-search"
+                            aria-hidden="true"></span></span>
+                        <input type="text" className="form-control" id="search_1" placeholder="请输入搜索关键字..." />
+                    </div>
+
+                    <div className="list" id="list">
+                        <ul className="list_1" >
+                            <Chat_list_1 data={chatlist1} />
+                            <Chat_list_2 data1={chatlist2} />
+                        </ul>
+                    </div>
+                    <nav>
+                        <ul className="pager" >
+                            <li><a href="#">上一页</a></li>
+                            <li><a href="#">下一页</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            );
+        }
+
+        // 聊天记录
+        function Chatmsg1(props) {
+            const historymsgs = props.historymsgs;
+            const Chatmsg = historymsgs.map((hmsg) =>
+                <div className="chat-list">
+                    <span className="himg {hmsg.user=='李四'?'right':''}"></span>
+                    <div className="userlist  {hmsg.user=='李四'?'right':''}">
+                        {hmsg.user }&nbsp;&nbsp;&nbsp;&nbsp;{hmsg.time}</div>
+                    <div className="comment  you }">{hmsg.msg}</div>
+                </div>
+            );
+            return (
+                <div className="col-md-8">
+                    <div className="header">
+                        <p className="h3 text-center"   >讨论组列表</p>
+                        <img src="./img/logo.png" id="logo" />
+                    </div>
+                    <div className="content">
+                        <div className="date">Moday,1:27 PM</div>
+                        <div className="chat-list">
+                            <span className="himg  "></span>
+                            <div className="userlist">张三&nbsp;&nbsp;&nbsp;&nbsp;2019-10-14 15:34:20</div>
+                            <div className="comment you">hello,my name is zhangsan</div>
+                        </div>
+                     {Chatmsg}
+
+                     <div className="input-group" id="foot">
+                    <span className="input-group-addon"><span className="glyphicon glyphicon-paperclip"
+                            aria-hidden="true"></span></span>
+                    <input type="text" className="form-control" id="tmsg" placeholder="请输入内容" />
+                    <span className="input-group-addon" ><span className="glyphicon glyphicon-send"
+                            aria-hidden="true"></span></span>
+                </div>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(
+            <div className="row" >
+                <Chat_list />
+                <Chatmsg1 historymsgs={historymsgs} />
+            </div>,
+            document.getElementById('container')
+        );
+    </script>
+</body>
+
+</html>

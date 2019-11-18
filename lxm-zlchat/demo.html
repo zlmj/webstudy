@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="./lxm-css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./lxm-css/demo.css">
+    <script src="./lxm-js/jquery.min.js"></script>
+    <script src="./lxm-js/bootstrap.min.js"></script>
+    <script src="./lxm-js/demo.js"></script>
+    <title>bootstrap</title>
+    <style>
+        .show{
+            border: 1px solid #333;
+            background-color:yellowgreen;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="height: 100%;position: relative;">
+            <div class="col-md-4 "  style="height: 100%;">
+                <!-- 搜索框 -->
+                    <div class="input-group" style="margin-top: 30px;">
+                        <span class="input-group-addon" id="search_img" ><span class="glyphicon glyphicon-search" aria-hidden="true"  onclick="search()"></span></span>
+                        <input type="text" class="form-control"id="search_1" placeholder="请输入搜索关键字...">
+                        </div>
+                    <!-- <p class="text-center">表格</p> -->
+                    <div class="table-responsive " style="margin-top: 20px;">
+                        <table class="table table-hover">
+                            <tbody class="list_1">
+                                <tr class="list_2">
+                                    <td rowspan="2">
+                                    <img src="./img/user1.jpg" class="img-responsive img-circle" style="width: 75px;height:50px;"></td>
+                                    <td>标题</td>
+                                    <td>时间</td>
+                                </tr>
+                                <tr class="list_2">
+                                    <td colspan="2">讨论内容</td>
+                                </tr>
+                                    <tr class="list_2">
+                                        <td rowspan="2">
+                                            <img src="./img/user1.jpg" class="img-responsive img-circle" style="width: 75px;height:50px;"></td>
+                                        <td>标题</td>
+                                        <td>时间</td>
+                                    </tr>
+                                    <tr class="list_2">
+                                        <td>讨论内容</td>
+                                    </tr>
+                        </table>
+                    </div>
+                    <nav>
+                        <ul class="pager"  style="bottom:0px;position: fixed;">
+                            <li><a href="#">上一页</a></li>
+                            <li><a href="#">下一页</a></li>
+                        </ul>
+                    </nav>
+            </div>
+            <div class="col-md-8"  style="height: 100%;">
+                <!-- 头部 -->
+                <div class="header">
+                        <p class="h3 text-center">通用讨论</p>
+                        <img src="./img/logo.png" id="logo">
+                </div>
+                <!-- 聊天框content -->
+                <div class="content">
+                    <div class="date">Moday,1:27 PM</div>
+                <div class="chat-list">
+                    <span class="himg"></span>
+                    <div class="userlist">张三&nbsp;&nbsp;&nbsp;&nbsp;2019-10-14 15:34:20</div>
+                    <div class="comment you">hello,my name is zhangsan</div>
+                </div>
+
+                </div>
+                <!-- 底部write 应用了输入框组 -->
+                <div class="input-group" style="position:absolute;bottom:0px;width: 94%;">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></span>
+                    <input type="text" class="form-control" id="tmsg" placeholder="请输入内容">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-send" aria-hidden="true"></span></span>
+                </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
