@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <script src="./lxm-js/react.js"></script>
+    <script src="./lxm-js/react-dom.js"></script>
+    <script src="./lxm-js/browser.min.js"></script> -->
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>react</title>
+    <style>
+        .foo {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"> </div>
+
+    <script type="text/babel">
+        class WebSite extends React.Component {
+            constructor() {
+                super();
+
+                this.state = {
+                    name: "百度",
+                    site: "www.baidu.com"
+                }
+            }
+            render() {
+                return (
+                    <div>
+                        <Name name={this.state.name} />
+                        <Link site={this.state.site} />
+                    </div>
+                );
+            }
+        }
+
+
+        class Name extends React.Component {
+            render() {
+                return (
+                    <h1>{this.props.name}</h1>
+                );
+            }
+        }
+
+        class Link extends React.Component {
+            render() {
+                return (
+                    <a href={this.props.site}>
+                        {this.props.site}
+                    </a>
+                );
+            }
+        }
+
+
+        ReactDOM.render(
+            <WebSite />,
+            document.getElementById('app')
+        );
+
+
+        // class Clock extends React.Component {
+        //     constructor(props) {
+        //         super(props);
+        //         this.state = { date: new Date() };
+        //     }
+
+
+        //     componentDidMount() {
+        //         this.timerID = setInterval(
+        //             () => this.tick(),
+        //             1000
+        //         );
+        //     }
+        //     tick() {
+        //         this.setState({
+        //             date: new Date()
+        //         });
+        //     }
+
+        //     compontentWillUnmount() {
+        //         clearInterval(this.timerID);
+        //     }
+
+
+        //     render() {
+        //         return (
+        //             <div>
+        //                 <h1>hello</h1>
+        //                 <h2>现在是{this.state.date.toLocaleTimeString()}</h2>
+        //             </div>
+        //         );
+        //     }
+        // }
+//         function HelloMessage(props) {
+//             return <h1>封装组件 {props.name}</h1>;
+//         }
+// function Name(props){
+//     return <h1>网站名称：{props.name}</h1>;
+// }
+// function URL(props){
+//     return <h1>网站地址：{props.url}</h1>;
+// }
+// function Nickname(props){
+//     return <h1>网站小名：{props.nickname}</h1>;
+// }
+
+// function App(){
+//     return(
+//         <div>
+//             <Name name="通用讨论"/>
+//             <URL url="www.baidu.com"/>
+//             <Nickname nickname="小名"/>
+//             </div>
+//     );
+// }
+
+
+//         const element1 = <HelloMessage  name='lisi'/>;
+//         var i = 0;
+//         var mystyle = {
+//             fontSize: 100,
+//             color: 'red'
+//         };
+//         var arr = [
+//             <h1>hhhh</h1>,
+//             <h2>ggg</h2>,
+//         ];
+
+    </script>
+
+</body>
+
+</html>

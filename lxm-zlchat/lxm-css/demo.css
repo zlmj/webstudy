@@ -1,0 +1,245 @@
+/* 在声明全局 CSS 变量*/
+:root {
+    --white: #fff;
+    --black: #000;
+    --bg: #f8f8f8;
+    --grey: #999;
+    --dark: #1a1a1a;
+    --light: #e6e6e6;
+    --wrapper: 1000px;
+    --blue: #00b0ff;
+}
+
+.container{
+    height: 100%;
+}
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.col-md-4{
+    height: 100%
+}
+#foot{
+    margin-top: 30px;
+    bottom:0px;
+    width: 100%;
+    position: absolute;
+}
+.row{
+    height: 100%;position: relative;
+}
+.pager{
+    bottom:0px;position: fixed;
+}
+/* 聊天页面 */
+.col-md-8{
+    height: 100%;
+}
+
+
+.header{
+    font-size: 20px;
+    height: 45px;
+    color:black;
+}
+
+.list_1{
+    width: 100%;
+    float: left;
+    height: 500px;
+    /* background-color: var(--black); */
+    position: relative;
+    float: left;
+}
+
+/* 单条记录 */
+.list_2{
+    height: 80px;
+    /* background-color: yellow; */
+    position: relative;
+    /* border-bottom-style:  solid; */
+    border-color:var(--light);
+    /* border:1px; */
+}
+
+
+.list_3{
+    width: 50px;
+    height: 50px;   
+    float: left;
+    position: absolute; 
+}
+
+
+/* 讨论组标题 */
+.list_4{
+    padding: 5px 5px;
+    margin-top: 5px;
+    float: left;
+    max-width: 230px;
+    overflow:hidden;
+    width: 200px;
+    height: 25px;
+    margin-left: 56px;
+
+}
+
+/* 讨论组时间 */
+.list_time{
+    float: right;
+    margin-top: 8px;
+    position: absolute;
+    font-size: 13px;
+}
+
+/* 讨论组内容 */
+.list_5{
+    float: left;
+    position: relative;
+    margin-top: 42px;
+    margin-left: -197px;
+}
+
+/* 列表点击改变样式 */
+.list_2.active{
+    background-color:var(--blue);
+}
+.list_2:hover{
+    background-color: var(--blue);
+}
+
+
+.content{
+    /* border: 1px solid black; */
+    width: 100%;
+    position: relative;
+    /* 设置弹性盒元素的方向
+    如果元素不是弹性盒对象的元素，则 flex-direction 属性不起作用 */
+    flex-direction:column;
+    /* 此元素将显示为块级元素，此元素前后会带有换行符 */
+    display: block;
+    /* Flex"弹性布局"，用来为盒状模型提供最大的灵活性。设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。 */
+    display: flex;
+    /* 裁剪内容 - 提供滚动机制 */
+    overflow-y: scroll;
+    /* background-color: yellowgreen; */
+    /* height: calc(100% - 54px); */
+    height: 623px;
+    /* border: 1px solid black; */
+}
+
+.date{
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+    color:black;
+}
+
+#logo{
+    position: relative;
+    float: right;
+    margin-top: -46px
+}
+
+.chat-list{
+    width: 100%;
+    margin-bottom: 20px;
+    /*overflow-wrap
+     normal:表示在正常的单词结束处换行。
+    break-word:表示如果行内没有多余的地方容纳该单词到结尾，则那些正常的不能被分割的单词会被强制分割换行。 */
+    overflow-wrap:break-word;
+
+}
+
+.chat-list .himg{
+    background: url(../img/user1.jpg) no-repeat;
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    float: left;
+    margin-top: 10px;
+}
+
+.chat-list .himg.right{
+    float: right;
+    background: url(../img/user1.jpg) no-repeat;
+    width: 40px;
+    height: 40px;
+    /* 规定背景图像的尺寸 */
+    background-size: 100% 100%;
+    margin-top: 10px;
+}
+
+.chat-list .userlist{
+    font-size: 12px;
+    left: 60px;
+    top: 0;
+    padding-left: 5px;
+    /* background-color: var(--blue); */
+    float: left;
+
+}
+
+.chat-list .userlist.right{
+    font-size: 12px;
+    left: 60px;
+    top: 0;
+    padding-left: 5px;
+    float: right;
+    /* background-color: royalblue; */
+}
+
+.comment{
+    font-size: 15px;
+    position: relative;
+    display: inline-block;
+    /* 左右均不允许浮动 */
+    clear: both;
+    padding: 11px 14px;
+    /* 把元素的顶端与行中最高元素的顶端对齐 */
+    vertical-align: top;
+    border-radius: 5px;
+
+}
+
+.comment:before{
+    position: relative;
+    display: block;
+    top:19px；
+    width：8px;
+    height: 6px;
+    content: '\00a0';
+    -webkit-transform: rotate(29deg) skew(-35deg);
+    transform: rotate(29deg) skew(-35deg);
+    
+}
+
+.comment.you{
+    float: left;
+    background-color:var(--blue);
+    /* 元素位于容器的开头。弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。 */
+    align-self: flex-start;
+    margin-left: 45px;
+    margin-top: -31px;
+}
+
+.comment .you:before{
+    background-color: var(--blue);
+    left: -3px;
+}
+
+.comment.me{
+    float: right;    /* 元素位于容器的开头。弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。 */
+    align-self: flex-start;
+    margin-right: 45px;
+    margin-top: -30px;
+    background-color:var(--light);
+}
+
+.list_2{
+    border-block-color: white;
+    
+}
+
