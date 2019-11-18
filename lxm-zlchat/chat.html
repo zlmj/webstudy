@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>LXM讨论组 </title>
+        <meta charset="utf-8">
+        <script src="./lxm-js/jquery.min.js" type="text/javascript"></script>
+        <script src="./lxm-js/chat.js" type="text/javascript"></script>
+        <link href="./lxm-css/chat.css" rel="stylesheet">
+
+        <!-- <script src="./lxm-js/xss.min.js" type="text/javascript"></script>
+        <script src="./lxm-js/socket.io.js" type="text/javascript"></script>
+      -->
+    </head>
+    <body>
+        <div class="chat">
+            <!-- 搜索框 -->
+       <div class="chatlist">
+        <div class="search">
+            <input type="text" id="search_1" >
+            <img src="./img/view.png" id="search_img" onclick="search()">
+                </div> 
+
+        <!-- 用户列表 -->
+        <div class="list">
+            <ul class="list_1">
+                <!-- <li class="list_2 active">
+                    <img src="./img/user1.jpg" class="list_3">
+                    <span class="list_4">讨论组标题1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span class="list_time">2019-10-24</span>
+                    <span class="list_5">讨论内容</span>
+                </li> -->
+            </ul>
+
+        </div>      
+    
+    
+    </div>
+
+
+
+        <div class="box">     
+            <div class="header" bg-primary>病历质检</div>
+            <div class="content">
+                <div class="date">Moday,1:27 PM</div>
+                <div class="chat-list">
+                    <span class="himg"></span>
+                    <div class="userlist">张三&nbsp;&nbsp;&nbsp;&nbsp;2019-10-14 15:34:20</div>
+                    <div class="comment you">hello,my name is zhangsan</div>
+                </div>
+                <div class="chat-list">
+                        <span class="himg right"></span>
+                        <div class="userlist right">李四&nbsp;&nbsp;&nbsp;&nbsp;2019-10-20 15:34:20</div>
+                        <div class="comment me">hello,my name is lisi</div>
+                </div>
+                <div class="userjoin">系统消息：李四加入群聊</div>
+            </div>
+            <div class="write">
+                <a href="javascript:;" class="write-link attach"></a>
+                <input type="text" id="tmsg" onkeyup="">
+                <a href="javascript:;" class="write-link smiley"></a>
+                <a href="javascript:;" class="write-link send" onclick="send()"></a>
+            </div>
+       </div>
+    </div>
+
+    </body>
+</html>
