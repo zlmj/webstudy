@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
     <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
-    <!-- <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script> -->
-    <script type="text/babel" src="/zn-练习(第五次作业)/js/index.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <!-- <script type="text/babel" src="./js/index.js"></script> -->
     <style>
         .sysmsg {
             display: block;
@@ -21,45 +21,104 @@
 
 <body>
     <div class="wrapper" id="wrapper">
-        <!-- <div class="container">
-            <div class="left">
-                <div class="top">
-                    <input type="text" placeholder="搜索" />
-                    <a href="javascript:;" class="search"></a>
-                </div>
-                <ul class="people">
-                    <li v-for="ch in chats" class="person" @click="aa">
-                        <img v-bind:src="ch.img" alt="" />
-                        <span class="name">{{ch.name}}</span>
-                        <span class="time">{{ch.date}}</span>
-                        <span class="preview">{{ch.lstmsg}}</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="right">
-                <div class="top">
-                    <span class="name">乡村爱情讨论组</span>
-                </div>
-                <div class="chat">
-                    <div v-for="his in hismsg" v-bind:class="[his.sysmsg ?'sysmsg':'msgitem']">
-                        <span v-bind:class="['himg',his.psn===curpsn ?'right':'']" v-show="!his.sysmsg"></span>
-                        <div v-bind:class="['ut',his.psn===curpsn ?'right':'']" v-show="!his.sysmsg">{{his.psn}}
-                        </div>
-                        <div v-bind:class="['bubble',his.psn===curpsn ?'me':'you']" v-show="!his.sysmsg">
-                            {{his.msg}}
-                        </div>
-                        <span class="sysmsgitem" v-show="his.sysmsg"> {{his.msg}}</span>
-                    </div>
-                </div>
-                <div class="write">
-                    <a href="JavaScript:;" class="write-link attach"></a>
-                    <input id="tmsg" type="text" @keyup.enter="sendmsg" v-model="msg" />
-                    <div class="button">
-                        <button type="button" @click="sendmsg">发送</button>
-                    </div>
-                </div>
-            </div>
-
-        </div> -->
     </div>
+    <script type="text/babel">
+        class ChatList extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    list: props.chats
+                };
+            }
+            render() {
+                return (<div className="left">
+                    <div className="top">
+                        <input type="text" placeholder="搜索" />
+                        <a href="javascript:;" className="search"></a>
+                    </div>
+                    <ul className="people">
+                        {
+                            this.state.list.map((ch) =>
+                                <li className="person" key={ch.name} >
+                                    <img src={ch.img} alt="" />
+                                    <span className="name">{ch.name}</span>
+                                    <span className="time">{ch.date}</span>
+                                    <span className="preview">{ch.lstmsg}</span>
+                                </li>
+                            )
+                        }
+                    </ul>
+                </div>);
+            }
+        }
+
+        class Chat extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = props.data;
+                this.state.isme = false;
+                this.state.issys = false;
+            }
+
+            render() {
+                return (
+                    <div className="right">
+                        <div className="top">
+                            <span className="name">乡村爱情讨论组</span>
+                        </div>
+                        <div className="chat">
+                            {
+                                this.state.hismsg.map((his) =>
+                                    <div className="msgitem" key={his.date}>
+                                        <span className="himg"></span>
+                                        <div className="ut" >{his.psn}</div>
+                                        <div className="bubble you" >{his.msg}</div>
+                                    </div >
+                                )
+                            }
+                        </div>
+                        <div className="write">
+                            <a href="JavaScript:;" className="write-link attach"></a>
+                            <input id="tmsg" type="text" />
+                            <div className="button">
+                                <button type="button">发送</button>
+                            </div>
+                        </div>
+                    </div >
+                );
+            }
+        }
+
+        class Container extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    curpsn: "刘能",
+                    msg: "",//当前输入消息
+                    hismsg: [
+                        { psn: "谢广坤", msg: "刘能，别跟我抢村长！", date: "2019-11-10 22:57:41", sysmsg: false },
+                        { psn: "刘能", msg: " 广坤，我~我~我~跟你说，别得意...有能耐我们比试比试", date: "2019-11-10 23:01:41", sysmsg: false },
+                        { psn: "", msg: "系统消息：谢大脚加入讨论组", date: "2019-11-10 22:57:41", sysmsg: true },
+                        { psn: "谢大脚", msg: " 你们俩再说啥呢？", date: "2019-11-10 23:06:41", sysmsg: false },
+                    ],
+                    chats: [
+                        { img: "img/谢大脚.jpg", name: "谢大脚", date: "2:09 PM", "lstmsg": "刘能，把上次的烟钱给结了" },
+                        { img: "img/刘能.jpg", name: "刘能", date: "2:10 PM", "lstmsg": "大脚，别~别闹，咱家玉~玉米卖了就结账" },
+                        { img: "img/谢广坤.jpg", name: "谢广坤", date: "2:12 PM", "lstmsg": "刘能你脸皮真厚！" },
+                    ]
+                };
+            }
+            render() {
+                return (<div className="container">
+                    <ChatList chats={this.state.chats}></ChatList>
+                    <Chat data={this.state}></Chat>
+                </div>);
+            }
+        }
+
+
+        var dataJson
+        ReactDOM.render(<Container />,
+            document.getElementById("wrapper"));
+    </script>
 </body>
